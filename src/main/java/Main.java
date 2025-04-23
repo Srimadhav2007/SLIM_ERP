@@ -5,13 +5,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
-/*
-  TO-DO's: CREATE OBJECTS OF EVERY STUDENT FROM THE FILE/DATABASE THAT STORES THE STUDENT DATA, UPDATE-OPTION PUT TO THE INFORMATION OF THE STUDENT
- */
+
 
 public class Main {
 
@@ -24,7 +23,10 @@ public class Main {
     public static void main(String[] args) {
         window=new JFrame("Student Portal");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1920,1080);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+
+        window.setSize(screenSize.width-68,screenSize.height-73);
         window.setLayout(null);
         panel=new JPanel(){
             private Image backgroundimage=new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"insti1.jpeg").getImage();
@@ -120,36 +122,30 @@ public class Main {
         erpPanel.add(newstudentbButton);
         erpPanel.add(studentLoginButton);
 
-        JPanel instiPanel=new JPanel(){
-            private Image backgroundimage=new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"insti7.jpeg").getImage();
-            @Override
-            public void paintComponent(Graphics g){
-                super.paintComponent(g);
-                g.drawImage(backgroundimage,0,0,window.getWidth(),window.getHeight(),this);
-            }
-        };
+        JPanel instiPanel=new JPanel();
+        instiPanel.setOpaque(false);
         instiPanel.setLayout(null);
-        instiPanel.setBounds(0,0,window.getWidth(),window.getHeight()-478);
+        instiPanel.setBounds(0,0,window.getWidth(),window.getHeight());
 
         JPanel panelHome = new JPanel();
         panelHome.setLayout(null);
-        panelHome.setPreferredSize(new Dimension(1800,1020));
+        panelHome.setPreferredSize(new Dimension(instiPanel.getWidth(),instiPanel.getHeight()-20));
         panelHome.setOpaque(false);        
         CardLayout cardLayout = new CardLayout();
         JPanel cardPanel = new JPanel(cardLayout);
-        cardPanel.setBounds(0,82,1800,900);       
+        cardPanel.setBounds(0,55,instiPanel.getWidth(),instiPanel.getHeight()-85);       
         ImageIcon rhi1 =new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"hi1.png");
         JLabel hi1 = new JLabel(rhi1);
-        hi1.setBounds(0,0,instiPanel.getWidth()-660,500);
+        hi1.setBounds(0,0,instiPanel.getWidth()-660,300);
         ImageIcon rhi2 =new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"hi2.png");
         JLabel hi2 = new JLabel(rhi2);
-        hi2.setBounds(0,0,instiPanel.getWidth()-660,500);
+        hi2.setBounds(0,0,instiPanel.getWidth()-660,300);
         ImageIcon rhi3 =new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"hi3.png");
         JLabel hi3 = new JLabel(rhi3);
-        hi3.setBounds(0,0,instiPanel.getWidth()-660,500);
+        hi3.setBounds(0,0,instiPanel.getWidth()-660,300);
         ImageIcon rhi4 =new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"hi4.png");
         JLabel hi4 = new JLabel(rhi4);
-        hi4.setBounds(0,0,instiPanel.getWidth()-660,500);
+        hi4.setBounds(0,0,instiPanel.getWidth()-660,300);
         ImageIcon rhi5 =new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"hi5.png");
         JLabel hi5 = new JLabel(rhi5);
         hi5.setBounds(0,0,instiPanel.getWidth()-660,500);
@@ -166,16 +162,16 @@ public class Main {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(null);
         buttonPanel.setOpaque(false);
-        buttonPanel.setBounds(45,317,1600,100);
+        buttonPanel.setBounds(65,505,1880,100);
         JButton nextButton = new JButton(">");
-        nextButton.setBounds(1070,0,100,30);
-        nextButton.setBackground(new Color(0,0,0,130));
+        nextButton.setBounds(1620,0,100,30);
+        nextButton.setBackground(new Color(0,0,0,0));
         nextButton.setForeground(Color.WHITE);
         nextButton.setBorder(null);
         nextButton.setFocusable(false);
         JButton previousButton = new JButton("<");
         previousButton.setBounds(0,0,100,30);
-        previousButton.setBackground(new Color(0,0,0,130));
+        previousButton.setBackground(new Color(0,0,0,0));
         previousButton.setForeground(Color.WHITE);
         previousButton.setBorder(null);
         previousButton.setFocusable(false);
@@ -205,7 +201,7 @@ public class Main {
         JScrollPane scrollPane = new JScrollPane(panelHome,
         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(0,30,1800,900);
+        scrollPane.setBounds(0,30,instiPanel.getWidth(),instiPanel.getHeight());
         scrollPane.getViewport().setOpaque(false);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
@@ -255,7 +251,7 @@ public class Main {
             }
         };
         mapPanel.setLayout(null);
-        mapPanel.setPreferredSize(new Dimension(instiPanel.getWidth()-600,1000));
+        mapPanel.setPreferredSize(new Dimension(instiPanel.getWidth(),instiPanel.getHeight()));
         JTextArea descArea = new JTextArea(
                             """
         In pursuance of the recommendations of the Site Selection Committee (SSC) and with the approval of the competent authority,
@@ -281,39 +277,40 @@ public class Main {
         JPanel panelLatestNews = new JPanel();
         panelLatestNews.setLayout(null);
         panelLatestNews.setOpaque(false);
-        panelLatestNews.setPreferredSize(new Dimension(instiPanel.getWidth()-680,4100));
-        JLabel li1 = new JLabel(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li1.jpeg"));
-        li1.setBounds(0,0,1270,300);
+        panelLatestNews.setPreferredSize(new Dimension(instiPanel.getWidth(),4110));
+        ImageIcon rli1 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li1.jpeg").getImage().getScaledInstance(instiPanel.getWidth(),500, Image.SCALE_SMOOTH));
+        JLabel li1 = new JLabel(rli1);
+        li1.setBounds(0,0,instiPanel.getWidth(),500);
         JLabel lt1 = new JLabel("News");
         lt1.setFont(new Font("Impact",Font.ITALIC,100));
-        lt1.setBounds(500,250,500,100);
-        ImageIcon rli2 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li2.png").getImage().getScaledInstance(1200,300, Image.SCALE_SMOOTH));
+        lt1.setBounds(250,100,500,100);
+        ImageIcon rli2 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li2.png").getImage().getScaledInstance(instiPanel.getWidth()-100,300, Image.SCALE_SMOOTH));
         JLabel li2 = new JLabel(rli2);
-        li2.setBounds(50,250,1200,500);
-        ImageIcon rli3 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li3.png").getImage().getScaledInstance(1200,300, Image.SCALE_SMOOTH));
+        li2.setBounds(50,250,instiPanel.getWidth()-100,500);
+        ImageIcon rli3 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li3.png").getImage().getScaledInstance(instiPanel.getWidth()-100,300, Image.SCALE_SMOOTH));
         JLabel li3 = new JLabel(rli3);
-        li3.setBounds(50,540,1200,500);
-        ImageIcon rli4 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li4.png").getImage().getScaledInstance(1200,300, Image.SCALE_SMOOTH));
+        li3.setBounds(50,540,instiPanel.getWidth()-100,500);
+        ImageIcon rli4 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li4.png").getImage().getScaledInstance(instiPanel.getWidth()-100,300, Image.SCALE_SMOOTH));
         JLabel li4 = new JLabel(rli4);
-        li4.setBounds(50,840,1200,500);
-        ImageIcon rli5 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li5.png").getImage().getScaledInstance(1200,300, Image.SCALE_SMOOTH));
+        li4.setBounds(50,840,instiPanel.getWidth()-100,500);
+        ImageIcon rli5 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li5.png").getImage().getScaledInstance(instiPanel.getWidth()-100,300, Image.SCALE_SMOOTH));
         JLabel li5 = new JLabel(rli5);
-        li5.setBounds(50,1130,1200,500);
-        ImageIcon rli6 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li6.png").getImage().getScaledInstance(1200,650, Image.SCALE_SMOOTH));
+        li5.setBounds(50,1130,instiPanel.getWidth()-100,500);
+        ImageIcon rli6 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li6.png").getImage().getScaledInstance(instiPanel.getWidth()-100,650, Image.SCALE_SMOOTH));
         JLabel li6 = new JLabel(rli6);
-        li6.setBounds(50,1430,1200,650);
-        ImageIcon rli7 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li7.png").getImage().getScaledInstance(1200,650, Image.SCALE_SMOOTH));
+        li6.setBounds(50,1430,instiPanel.getWidth()-100,650);
+        ImageIcon rli7 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li7.png").getImage().getScaledInstance(instiPanel.getWidth()-100,650, Image.SCALE_SMOOTH));
         JLabel li7 = new JLabel(rli7);
-        li7.setBounds(50,2080,1200,650);
-        ImageIcon rli8 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li8.png").getImage().getScaledInstance(1200,650, Image.SCALE_SMOOTH));
+        li7.setBounds(50,2080,instiPanel.getWidth()-100,650);
+        ImageIcon rli8 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li8.png").getImage().getScaledInstance(instiPanel.getWidth()-100,650, Image.SCALE_SMOOTH));
         JLabel li8 = new JLabel(rli8);
-        li8.setBounds(50,2730,1200,650);
-        ImageIcon rli9 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li9.png").getImage().getScaledInstance(1200,650, Image.SCALE_SMOOTH));
+        li8.setBounds(50,2730,instiPanel.getWidth()-100,650);
+        ImageIcon rli9 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"li9.png").getImage().getScaledInstance(instiPanel.getWidth()-100,650, Image.SCALE_SMOOTH));
         JLabel li9 = new JLabel(rli9);
-        li9.setBounds(50,3380,1200,650);
-        ImageIcon rli10 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"endpic.png").getImage().getScaledInstance(1280,110, Image.SCALE_SMOOTH));
+        li9.setBounds(50,3380,instiPanel.getWidth()-100,650);
+        ImageIcon rli10 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"endpic.png").getImage().getScaledInstance(instiPanel.getWidth(),110, Image.SCALE_SMOOTH));
         JLabel li10 = new JLabel(rli10);
-        li10.setBounds(0,3980,1280,110);
+        li10.setBounds(0,3980,instiPanel.getWidth(),110);
         panelLatestNews.add(li10);
         panelLatestNews.add(li9);
         panelLatestNews.add(li8);
@@ -327,9 +324,9 @@ public class Main {
         panelLatestNews.add(li1);
 
         JPanel panelCult = new JPanel();
-        panelCult.setPreferredSize(new Dimension(instiPanel.getWidth()-680,700));
+        panelCult.setPreferredSize(new Dimension(instiPanel.getWidth(),instiPanel.getHeight()));
         JPanel panelCultural = new JPanel();
-        panelCultural.setPreferredSize(new Dimension(instiPanel.getWidth()-680,600));
+        panelCultural.setPreferredSize(new Dimension(1500,700));
         panelCultural.setLayout(new GridLayout(0,3));
         ImageIcon rci1 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"culturals1.jpg").getImage().getScaledInstance(400,300, Image.SCALE_SMOOTH));
         JLabel ci1 = new JLabel(rci1);
@@ -358,9 +355,9 @@ public class Main {
         panelCultural.add(ci5);
 
         JPanel panelSports = new JPanel();
-        panelSports.setPreferredSize(new Dimension(instiPanel.getWidth()-680,700));
+        panelSports.setPreferredSize(new Dimension(instiPanel.getWidth(),instiPanel.getHeight()));
         JPanel panelSpt = new JPanel();
-        panelSpt.setPreferredSize(new Dimension(instiPanel.getWidth()-680,600));
+        panelSpt.setPreferredSize(new Dimension(1500,700));
         panelSpt.setLayout(new GridLayout(0,3));
         ImageIcon rsi1 = new ImageIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"Images"+File.separator+"sports1.jpg").getImage().getScaledInstance(400,300, Image.SCALE_SMOOTH));
         JLabel si1 = new JLabel(rsi1);
@@ -389,7 +386,7 @@ public class Main {
         panelSpt.add(si5);
 
         JPanel panelCurriculum = new JPanel();
-        panelCurriculum.setPreferredSize(new Dimension(instiPanel.getWidth()-680,850));
+        panelCurriculum.setPreferredSize(new Dimension(instiPanel.getWidth(),50));
         panelCurriculum.setLayout(null);
         JLabel ct2 = new JLabel("● Curriculum for B.Tech Programs are listed as below ↓");
         ct2.setFont(new Font("Brush Script",Font.ITALIC,30));
