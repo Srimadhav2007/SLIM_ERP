@@ -23,7 +23,7 @@ import com.mongodb.client.MongoCollection;
 
 public class Admin{
     static ArrayList<Student> Students=new ArrayList<>();
-    static String connectionString = "mongodb+srv://phanisrimadhavmula:<mypassword>@cluster0.lvomk.mongodb.net/?appName=Cluster0";
+    static String connectionString = "mongodb+srv://phanisrimadhavmula:srimadhavcs24b025@cluster0.lvomk.mongodb.net/?appName=Cluster0";
 
                                 static ServerApi serverApi = ServerApi.builder()
                                     .version(ServerApiVersion.V1)
@@ -221,28 +221,9 @@ public class Admin{
                                     try {
                                         MongoDatabase database=mongoClient.getDatabase("Student_Info_Portal");
                                         MongoCollection<Document> collection=database.getCollection("Update_Requests");
-                                        JDialog jp=new JDialog();
-                                        jp.setLayout(new FlowLayout());
                                         for(Document details:collection.find()){
-                                            JButton jb=new JButton(details.getString("name")+"-"+details.getString("id"));
-                                            jb.setBackground(new Color(0,0,0));
-                                            jb.setForeground(new Color(255,255,255));
-                                            jb.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED),
-                                                            BorderFactory.createLineBorder(new Color(0xf4f5f0),2,false)));
-                                            jb.setFocusable(false);
-                                            jb.setPreferredSize(new Dimension(150,50));
-                                            jp.add(jb);
                                             checkStudentUpdate(details,database.getCollection("Students").find(new Document("id",details.getString("id"))).first());
-                                            /*jb.addActionListener(new ActionListener() {
-                                                @Override
-                                                public void actionPerformed(ActionEvent e){
-                                                    jp.remove(jb);
-                                                    checkStudentUpdate(details,database.getCollection("Students").find(new Document("id",details.getString("id"))).first());
-                                                }
-                                            });*/
                                         }
-                                        jp.pack();
-                                        jp.setVisible(true);
                                     } catch (Exception ex) {
                                         System.out.println(ex);
                                     }
