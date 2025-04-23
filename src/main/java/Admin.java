@@ -23,7 +23,7 @@ import com.mongodb.client.MongoCollection;
 
 public class Admin{
     static ArrayList<Student> Students=new ArrayList<>();
-    static String connectionString = "mongodb+srv://phanisrimadhavmula:srimadhavcs24b025@cluster0.lvomk.mongodb.net/?appName=Cluster0";
+    static String connectionString = "mongodb+srv://phanisrimadhavmula:<mypassword>@cluster0.lvomk.mongodb.net/?appName=Cluster0";
 
                                 static ServerApi serverApi = ServerApi.builder()
                                     .version(ServerApiVersion.V1)
