@@ -1,6 +1,6 @@
 # Student Info Portal System
 
-## Developed by Srimadhav Mula and Bhargav Nallamalla
+## Developed by Phani Srimadhav Mula and Yuva Bhargav Nallamala
 
 This Information Portal System designed as the course project of Object-Oriented-Programming mimics the functionality of a University Student website.
 
