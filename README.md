@@ -24,3 +24,8 @@ This Information Portal System designed as the course project of Object-Oriented
             The new student enroll asks for the student details and sends to the Admin for Admin's consent
             The existing Student when logs in, checks his/her data,and might request for an update if any required, which will be processed by the Admin, and can book a hospital visit
             Admin when logs in can see all the students, can add/update the students data and process the update/enroll requests.
+
+### Requirements and Instructions:
+                                The runnable files for the project are  myproject-1.0-SNAPSHOT.jar(runnable in any OS) and InfoPortal.sh(which is an Ubuntu executable file)
+                                The system that runs the application must have a JDK version 17 or higher
+                                The .java are not directly runnable as the MongoDB driver is not available in JDK by default, so to run the project, one has to run the jar file and can run the InfoPortal.sh executable if the OS is a Linux based system.
